@@ -16,3 +16,8 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(["prefix" => "/api"], function () use ($router) {
+    $router->get("/series", SerieController::class . "@index");
+    $router->get("/episodios", SerieController::class . "@index");
+});
