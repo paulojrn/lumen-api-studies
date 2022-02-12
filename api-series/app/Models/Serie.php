@@ -13,4 +13,12 @@ class Serie extends Model
     {
         return $this->hasMany(Episodio::class);
     }
+
+    /**
+     * Mutator para nome
+     */
+    public function setNomeAttribute($nome)
+    {
+        $this->attributes["nome"] = mb_strtoupper($nome);
+    }
 }
