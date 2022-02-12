@@ -20,10 +20,19 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(["prefix" => "api"], function () use ($router) {
-    $router->post("series", "SerieController@store");
-    $router->get("series", "SerieController@index");
-    $router->get("series/{id}", "SerieController@show");
-    $router->put("series/{id}", "SerieController@update");
-    $router->delete("series/{id}", "SerieController@destroy");
-    $router->get("episodios", "SerieController@index");
+    $router->group(["prefix" => "series"], function () use ($router) {
+        $router->post("", "SerieController@store");
+        $router->get("", "SerieController@index");
+        $router->get("{id}", "SerieController@show");
+        $router->put("{id}", "SerieController@update");
+        $router->delete("{id}", "SerieController@destroy");
+    });
+
+    $router->group(["prefix" => "episodios"], function () use ($router) {
+        $router->post("", "EpisodioController@store");
+        $router->get("", "EpisodioController@index");
+        $router->get("{id}", "EpisodioController@show");
+        $router->put("{id}", "EpisodioController@update");
+        $router->delete("{id}", "EpisodioController@destroy");
+    });
 });
