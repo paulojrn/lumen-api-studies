@@ -8,9 +8,15 @@ abstract class BaseController
 {
     protected string $classe;
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->classe::all();
+        $offset = ($request->page - 1) * $request->per_page;
+        // return $this->classe::query()
+        //     ->offset($offset)
+        //     ->limit($request->per_page)
+        //     ->get();
+
+        return $this->classe::paginate($request->per_page);
     }
 
     public function store(Request $request)
