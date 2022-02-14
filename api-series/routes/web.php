@@ -2,8 +2,6 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
-use App\Http\Controllers\SerieController;
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,6 +24,8 @@ $router->group(["prefix" => "api"], function () use ($router) {
         $router->get("{id}", "SerieController@show");
         $router->put("{id}", "SerieController@update");
         $router->delete("{id}", "SerieController@destroy");
+
+        $router->get("{serieId}/episodios", "EpisodioController@porSerie");
     });
 
     $router->group(["prefix" => "episodios"], function () use ($router) {

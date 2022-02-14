@@ -14,6 +14,8 @@ class Episodio extends Model
         "serie_id"
     ];
 
+    protected $appends = ["links"];
+
     public function serie()
     {
         return $this->belongsTo(Serie::class);
@@ -25,5 +27,16 @@ class Episodio extends Model
     public function getAssistidoAttribute($assistido): bool
     {
         return $assistido;
+    }
+
+    /**
+     * Accessor para links
+     */
+    public function getLinksAttribute(): array
+    {
+        return [
+            "self" => "/api/episodios/" . $this->id,
+            "serie" => "/api/series/" . $this->serie_id
+        ];
     }
 }
